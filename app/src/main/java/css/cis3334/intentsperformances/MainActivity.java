@@ -1,6 +1,7 @@
 package css.cis3334.intentsperformances;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.provider.CalendarContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,12 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.net.URI;
 import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity {
 
     Button btn1Web, but1Calendar, btn1Map;
     TextView textViewStatus;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Do something in response to button click
                 textViewStatus.setText("Code should display website for performance 1");
+                Uri webpage = Uri.parse("http://www.css.edu/about/spotlight-arts-and-lectures/calendar.html#/?i=1");
+                Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
             }
         });
 
@@ -67,11 +76,18 @@ public class MainActivity extends AppCompatActivity {
         /**
          *   Set up button click event listener for the web info button for the first performance
          */
+
         btn1Map = (Button) findViewById(R.id.button1map);
         btn1Map.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Do something in response to button click
                 textViewStatus.setText("Code should display map for performance 1");
+                Uri map = Uri.parse("geo: 46.8152676,-92.1072614");
+                Intent intent = new Intent(Intent.ACTION_VIEW, map);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+
             }
         });
 
